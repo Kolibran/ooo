@@ -12,8 +12,11 @@ import { dispatch } from './store/store';
 const App = () => {
 
 useEffect(() => {
+
   const dispatchCallback = (data:any) => dispatch({type: 'setData', data})
+
   dataOperation(dispatchCallback)
+  
 }, [])
 
  return <>
