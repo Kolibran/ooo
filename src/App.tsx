@@ -20,7 +20,7 @@ useEffect(() => {
   <BrowserRouter>
   <Box>
     <Navbar/>
-    <Box sx={{display: 'flex', padding: '100px'}}>
+    <Box sx={{display: 'flex'}}>
       <Liked/>
       <Routes>
         <Route path="/"  element={<ProductList/>} />
