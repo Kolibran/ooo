@@ -12,7 +12,6 @@ interface iProduct {
     price: string;
     src: string;
 }
-  
 
 const Product = () => {
     const likedProducts = useStoreState('liked')
