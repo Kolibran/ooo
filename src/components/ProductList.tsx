@@ -5,6 +5,7 @@ import { dispatch, useStoreState } from "../store/store";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ProductItem from "./ProductItem";
+import { toBePartiallyChecked } from "@testing-library/jest-dom/matchers";
 
 interface Product {
   name: string;
@@ -32,14 +33,16 @@ function ProductList() {
   };
 
   return (
-    <Box sx={{ width: "100%", ml: "150px", mt: "100px" }}>
-      <Grid container spacing={2}>
+    <Box sx={{ width: "50%" /*  ml: "150px", mt: "100px"  */ }}>
+      <Grid container item spacing={3} columns={{ xs: 4, sm: 8, md: 12 }}>
         {products.map((product) => (
-          <ProductItem
-            product={product}
-            likedProducts={likedProducts}
-            toggleLike={toggleLike}
-          />
+          <Grid item>
+            <ProductItem
+              product={product}
+              likedProducts={likedProducts}
+              toggleLike={toggleLike}
+            />
+          </Grid>
         ))}
       </Grid>
     </Box>

@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -18,6 +17,13 @@ const Product = () => {
 
   const { id } = useParams();
 
+  const item = allProducts.find((item) => Number(item.id) === Number(id)) ?? {
+    name: "",
+    id: "",
+    price: "",
+    src: "",
+  };
+
   const isLiked = likedProducts.some((p: any) => p.id === item.id);
 
   const toggleLike = () => {
@@ -27,17 +33,15 @@ const Product = () => {
       dispatch({ type: "add", product: item });
     }
   };
-  const item = allProducts.find((item) => Number(item.id) === Number(id)) ?? {
-    name: "",
-    id: "",
-    price: "",
-    src: "",
-  };
 
   return (
     <Box sx={{ width: "1185px", display: "flex", mt: "60px", ml: "135px" }}>
       <img
-        style={{ height: "400px" }}
+        style={{
+          height: "400px",
+
+          mixBlendMode: "darken",
+        }}
         src={`https://testbackend.nc-one.com${item.src}`}
       />
       <Box sx={{ mt: "110px", ml: "25px" }}>

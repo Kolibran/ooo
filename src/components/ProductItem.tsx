@@ -17,43 +17,65 @@ export default function ProductItem({
 
   return (
     <div
+      id="productIte"
       style={{
-        height: "350px",
+        height: "250px",
+        width: "200px",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
+        justifyContent: "space-between",
         alignItems: "center",
-        width: "250px",
-        padding: "15px",
+        padding: "15px 20px",
         backgroundImage:
-          "url(\"data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='45' ry='45' stroke='%23333' stroke-width='2' stroke-dasharray='15' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e\")",
-        borderRadius: "45px",
+          "url(\"data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='25' ry='25' stroke='%23333' stroke-width='2' stroke-dasharray='10' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e\")",
+        borderRadius: "25px",
+        backgroundColor: "#fff",
       }}
     >
-      <Link to={`/product/${product.id}`}>
+      <Link
+        to={`/product/${product.id}`}
+        style={{
+          display: "grid",
+          justifyItems: "center",
+          textDecoration: "none",
+        }}
+      >
         <img
-          style={{ height: "232px", width: "232px" }}
+          style={{ height: "80%", width: "80%" }}
           src={`https://testbackend.nc-one.com${product.src}`}
           alt={product.name}
         />
         <Typography
           sx={{
             color: "#414141",
-            fontFamily: "Poppins",
-            fontSize: "20px",
+            fontFamily: "Poppins,sans-seif",
+            fontSize: "18px",
             fontWeight: 400,
+            maxWidth: "100%",
+            maxHeight: "40px",
+            textOverflow: "ellipsis",
+            width: "100%",
+            textDecoration: "none",
           }}
         >
           {product.name}
         </Typography>
       </Link>
 
-      <Box sx={{ display: "flex", height: "25px" }}>
+      {/* <Box sx={{ display: "flex" }}> */}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          width: "100%",
+          height: "20%",
+        }}
+      >
         <Typography
           sx={{
             color: "#414141",
             fontFamily: "Poppins",
-            fontSize: "20px",
+            fontSize: "24px",
             fontWeight: 500,
             pt: "8px",
           }}
@@ -64,7 +86,6 @@ export default function ProductItem({
         <Box
           sx={{
             mt: "3px",
-            ml: "100px",
             backgroundColor: "#FFCC26",
             borderRadius: "5px",
             height: "36px",
@@ -83,6 +104,7 @@ export default function ProductItem({
             <FavoriteBorderIcon />
           )}
         </Box>
+        {/* </Box> */}
       </Box>
     </div>
   );

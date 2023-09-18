@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import Navbar from "./components/Navbar";
 import Liked from "./components/Liked";
 import ProductList from "./components/ProductList";
@@ -21,13 +21,20 @@ const App = () => {
       <BrowserRouter>
         <Box>
           <Navbar />
-          <Box sx={{ display: "flex" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              padding: "100px",
+              backgroundColor: "#fbfbfb",
+            }}
+          >
             <Liked />
             <Routes>
               <Route path="/" element={<ProductList />} />
               <Route path="/product/:id" element={<Product />}></Route>
             </Routes>
-          </Box>
+          </div>
         </Box>
       </BrowserRouter>
     </>
