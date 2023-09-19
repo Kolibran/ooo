@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import "../fonts/fonts.css";
 import { useLocation } from "react-router-dom";
+import BackButton from "./BackButton";
 
 const Navbar = () => {
   const location = useLocation();
@@ -27,6 +28,8 @@ const Navbar = () => {
         borderBottom: "solid #414141 1px",
       }}
     >
+      {location.pathname.startsWith("/product") && <BackButton />}
+
       <Typography
         sx={{
           fontFamily: "Anek Telugu",
