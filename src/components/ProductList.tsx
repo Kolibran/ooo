@@ -1,11 +1,6 @@
-import { useEffect, useState } from "react";
-import { Box, Card, Typography, Grid } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Box, Grid } from "@mui/material";
 import { dispatch, useStoreState } from "../store/store";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import ProductItem from "./ProductItem";
-import { toBePartiallyChecked } from "@testing-library/jest-dom/matchers";
 
 interface Product {
   name: string;

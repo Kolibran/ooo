@@ -1,7 +1,10 @@
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Box, Typography } from "@mui/material";
+import { Typography, Box, Popper, Fade } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import ReactTooltip from "react-tooltip";
+import { log } from "console";
 
 export default function ProductItem({
   product = {
@@ -13,13 +16,32 @@ export default function ProductItem({
   toggleLike = (productId: number): void => {},
   likedProducts = [],
 }) {
-  console.log();
+  const [showFullProductName, setShowFullProductName] = useState(false);
+  const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const handleHover = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+    setOpen((previousOpen) => !previousOpen);
+  };
+
+  const getTrueProductName = (name: string) => {
+    const wordsArray = name.split(" ");
+
+    if (wordsArray.length > 4) {
+      return `${wordsArray.slice(0, 4).join(" ")}...`;
+    } else {
+      return name;
+    }
+  };
+
+  const trueProductName = getTrueProductName(product.name);
 
   return (
     <div
       id="productIte"
       style={{
-        height: "250px",
+        height: "260px",
         width: "200px",
         display: "flex",
         flexDirection: "column",
@@ -57,16 +79,42 @@ export default function ProductItem({
             width: "100%",
             textDecoration: "none",
           }}
+          // data-tip={showFullProductName ? null : product.name}
+          // onClick={toggleProductName}
+          onMouseEnter={handleHover}
+          onMouseLeave={handleHover}
         >
-          {product.name}
+          {trueProductName}
+          <Popper
+            open={open}
+            anchorEl={anchorEl}
+            placement="top"
+            modifiers={[{ enabled: true }]}
+            transition
+          >
+            {({ TransitionProps }) => (
+              <Fade {...TransitionProps} timeout={350}>
+                <Box
+                  sx={{
+                    border: 1,
+                    borderRadius: 2,
+                    p: 1,
+                    bgcolor: "background.paper",
+                  }}
+                >
+                  {product.name}
+                </Box>
+              </Fade>
+            )}
+          </Popper>
         </Typography>
       </Link>
 
-      {/* <Box sx={{ display: "flex" }}> */}
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
+          alignItems: "center",
           width: "100%",
           height: "20%",
         }}
@@ -104,7 +152,6 @@ export default function ProductItem({
             <FavoriteBorderIcon />
           )}
         </Box>
-        {/* </Box> */}
       </Box>
     </div>
   );
