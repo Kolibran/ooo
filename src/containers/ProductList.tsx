@@ -1,6 +1,6 @@
 import { Box, Grid } from "@mui/material";
 import { dispatch, useStoreState } from "../store/store";
-import ProductItem from "./ProductItem";
+import ProductItem from "../components/ProductItem";
 
 interface Product {
   name: string;
@@ -28,7 +28,7 @@ function ProductList() {
   };
 
   return (
-    <Box sx={{ width: "50%" /*  ml: "150px", mt: "100px"  */ }}>
+    <Box sx={{ width: "50%" }}>
       <Grid container item spacing={3} columns={{ xs: 4, sm: 8, md: 12 }}>
         {products.map((product) => (
           <Grid item>

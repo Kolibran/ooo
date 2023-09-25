@@ -3,23 +3,29 @@ import { Link } from "react-router-dom";
 import { Typography, Box, Popper, Fade } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import ReactTooltip from "react-tooltip";
-import { log } from "console";
+
+interface Product {
+  name: string;
+  price: number;
+  src: string;
+  id: number;
+}
+
+type Props = {
+  product: Product;
+  toggleLike: (productId: number) => void;
+  likedProducts: Product[];
+};
 
 export default function ProductItem({
-  product = {
-    name: "",
-    price: 0,
-    src: "",
-    id: 0,
-  },
+  product,
   toggleLike = (productId: number): void => {},
   likedProducts = [],
-}) {
-  const [showFullProductName, setShowFullProductName] = useState(false);
+}: Props) {
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
+  const { name, price, src, id } = product;
   const handleHover = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
     setOpen((previousOpen) => !previousOpen);
@@ -35,7 +41,7 @@ export default function ProductItem({
     }
   };
 
-  const trueProductName = getTrueProductName(product.name);
+  const trueProductName = getTrueProductName(name);
 
   return (
     <div
@@ -55,7 +61,8 @@ export default function ProductItem({
       }}
     >
       <Link
-        to={`/product/${product.id}`}
+        // TODO
+        to={`/product/${id}`}
         style={{
           display: "grid",
           justifyItems: "center",
@@ -64,8 +71,8 @@ export default function ProductItem({
       >
         <img
           style={{ height: "80%", width: "80%" }}
-          src={`https://testbackend.nc-one.com${product.src}`}
-          alt={product.name}
+          src={`https://testbackend.nc-one.com${src}`}
+          alt={name}
         />
         <Typography
           sx={{
@@ -79,8 +86,6 @@ export default function ProductItem({
             width: "100%",
             textDecoration: "none",
           }}
-          // data-tip={showFullProductName ? null : product.name}
-          // onClick={toggleProductName}
           onMouseEnter={handleHover}
           onMouseLeave={handleHover}
         >
@@ -102,7 +107,7 @@ export default function ProductItem({
                     bgcolor: "background.paper",
                   }}
                 >
-                  {product.name}
+                  {name}
                 </Box>
               </Fade>
             )}
@@ -128,7 +133,7 @@ export default function ProductItem({
             pt: "8px",
           }}
         >
-          $ {product.price}
+          $ {price}
         </Typography>
 
         <Box
@@ -143,10 +148,10 @@ export default function ProductItem({
             justifyContent: "center",
           }}
           onClick={() => {
-            toggleLike(product.id);
+            toggleLike(id);
           }}
         >
-          {likedProducts.some((p: any) => p.id === product.id) ? (
+          {likedProducts.some((p: any) => p.id === id) ? (
             <FavoriteIcon />
           ) : (
             <FavoriteBorderIcon />

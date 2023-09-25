@@ -11,7 +11,7 @@ interface iProduct {
   src: string;
 }
 
-const Product = () => {
+const ProductDetails = () => {
   const likedProducts = useStoreState("liked");
   const allProducts: [iProduct] = useStoreState("data");
 
@@ -95,4 +95,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default ProductDetails;

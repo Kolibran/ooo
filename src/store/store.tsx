@@ -1,5 +1,5 @@
 import { createStore } from "react-hooks-global-state";
-import Product from "../components/Product";
+import Product from "../components/ProductDetails";
 
 interface iProduct {
   name: string;

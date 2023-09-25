@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import Navbar from "./components/Navbar";
-import Liked from "./components/Liked";
-import ProductList from "./components/ProductList";
-import Product from "./components/Product";
+import Favourites from "./containers/Favourites";
+import ProductList from "./containers/ProductList";
+import ProductDetails from "./components/ProductDetails";
 import { dataOperation } from "./dataOperation/dataOperation";
 import { dispatch } from "./store/store";
 
@@ -29,10 +29,10 @@ const App = () => {
               backgroundColor: "#fbfbfb",
             }}
           >
-            <Liked />
+            <Favourites />
             <Routes>
               <Route path="/" element={<ProductList />} />
-              <Route path="/product/:id" element={<Product />}></Route>
+              <Route path="/product/:id" element={<ProductDetails />}></Route>
             </Routes>
           </div>
         </Box>
