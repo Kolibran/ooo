@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { Typography, Box, Popper, Fade } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";

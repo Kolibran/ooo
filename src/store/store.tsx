@@ -1,5 +1,4 @@
 import { createStore } from "react-hooks-global-state";
-import Product from "../components/ProductDetails";
 
 interface iProduct {
   name: string;
@@ -30,7 +29,7 @@ const reducer = (state: any, action: any) => {
         ),
       };
     case "setData":
-      return { ...state, data: [...action.data] }; // Додати товар до корзини
+      return { ...state, data: [...action.data] };
     default:
       return state;
   }
